@@ -18,7 +18,6 @@ text_file = r"Detail_99_CleanData_0625.csv"
 df = pd.read_csv(text_file)
 df = df[["GPTs_ID", "GPTs_Name", "Description"]]
 
-
 # Load pre-trained BERT model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -32,7 +31,8 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 #     "A program to create digital art and illustrations.digital art creator",
 #     # Add more documents as needed
 # ]
-corpus = df[["Description"]]
+corpus = df["Description"].tolist()
+
 
 # Encode corpus into embeddings
 embeddings = model.encode(corpus)
@@ -75,5 +75,5 @@ plt.title('Silhouette Score for Optimal Number of Clusters')
 plt.show()
 
 # Optimal number of clusters
-optimal_clusters = range(2, 11)[np.argmax(silhouette_scores)]
+optimal_clusters = range_clusters[np.argmax(silhouette_scores)]
 print(f'Optimal number of clusters: {optimal_clusters}')
