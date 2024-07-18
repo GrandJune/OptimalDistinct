@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --time=00:30:00
+#SBATCH --job-name=test
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=junyili@u.nus.edu
+#SBATCH --mem=50gb
+#SBATCH --partition=normal
+#SBATCH --cpus-per-task=20
+#SBATCH --nodes=1
+python Run_text_with_cluster.py
