@@ -39,7 +39,7 @@ embeddings = model.encode(corpus)
 
 # Determine the optimal number of clusters using the Elbow Method
 inertia = []
-range_clusters = range(5, 20)  # Test from 1 to 10 clusters
+range_clusters = range(5, 6)  # Test from 1 to 10 clusters
 
 for k in range_clusters:
     kmeans = KMeans(n_clusters=k, random_state=42)
