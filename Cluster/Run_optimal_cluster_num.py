@@ -11,13 +11,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sentence_transformers import SentenceTransformer
+import warnings
+from kneed import KneeLocator
+import os
+# Suppress NVML warning
+warnings.filterwarnings("ignore", message="Can't initialize NVML")
 
+# Set TOKENIZERS_PARALLELISM environment variable to false to avoid deadlocks
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # text_file = r"E:\GPT\Detail_99_CleanData_0625.csv"
 text_file = r"Detail_99_CleanData_0625.csv"
 df = pd.read_csv(text_file)
 df = df[["GPTs_ID", "GPTs_Name", "Description"]]
-
+df = df.dropna()
 # Load pre-trained BERT model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -31,7 +38,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 #     "A program to create digital art and illustrations.digital art creator",
 #     # Add more documents as needed
 # ]
-corpus = df["Description"].tolist()
+corpus = df["Description"].astype(str).tolist()
 
 
 # Encode corpus into embeddings
@@ -39,7 +46,7 @@ embeddings = model.encode(corpus)
 
 # Determine the optimal number of clusters using the Elbow Method
 inertia = []
-range_clusters = range(5, 6)  # Test from 1 to 10 clusters
+range_clusters = range(3, 30)  # Test from 1 to 10 clusters
 
 for k in range_clusters:
     kmeans = KMeans(n_clusters=k, random_state=42)
@@ -52,12 +59,18 @@ plt.plot(range_clusters, inertia, marker='o')
 plt.xlabel('Number of Clusters')
 plt.ylabel('Inertia')
 plt.title('Elbow Method for Optimal Number of Clusters')
+plt.savefig('Inertia.png')
 plt.show()
 
+# Use the Kneedle algorithm to find the elbow point
+kneedle = KneeLocator(range_clusters, inertia, curve='convex', direction='decreasing')
+optimal_clusters = kneedle.elbow
+print(f'Optimal number of clusters: {optimal_clusters}')
 
 from sklearn.metrics import silhouette_score
 
 # Determine the optimal number of clusters using the Silhouette Score
+# How similar an object is to its own cluster compared to other clusters.
 silhouette_scores = []
 
 for k in range_clusters:  # Silhouette score is not defined for 1 cluster
@@ -72,6 +85,7 @@ plt.plot(range_clusters, silhouette_scores, marker='o')
 plt.xlabel('Number of Clusters')
 plt.ylabel('Silhouette Score')
 plt.title('Silhouette Score for Optimal Number of Clusters')
+plt.savefig('SilhouetteScore.png')
 plt.show()
 
 # Optimal number of clusters
