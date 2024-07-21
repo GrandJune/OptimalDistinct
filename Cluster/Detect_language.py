@@ -40,7 +40,7 @@ for text_file in text_file_list:
             df.at[index, 'Primary_Language'] = detect_primary_language(row['Description'])
 
     # Save the DataFrame with primary language identified as a new column in the original CSV file
-    output_file = "Detail_99_CleanData_0625_with_language.csv"
+    output_file = "{}_with_language.csv".format(text_file[:-4])
     df.to_csv(output_file, index=False)
 
 # Display the DataFrame with primary language identified for each sentence
