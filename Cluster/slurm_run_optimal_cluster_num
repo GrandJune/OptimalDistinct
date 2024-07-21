@@ -1,0 +1,11 @@
+#!/bin/bash
+#SBATCH --time=03:00:00
+#SBATCH --job-name=optimal_cluster
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=junyili@u.nus.edu
+#SBATCH --mem=200gb
+#SBATCH --partition=normal
+#SBATCH --cpus-per-task=50
+#SBATCH --nodes=1
+#SBATCH --exclude=xcng[0-1],xcne[0-5]
+python Run_optimal_cluster_num.py
