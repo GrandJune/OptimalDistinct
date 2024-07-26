@@ -3,9 +3,9 @@
 #SBATCH --job-name=test
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-user=junyili@u.nus.edu
-#SBATCH --mem=100gb
+#SBATCH --mem=200gb
 #SBATCH --partition=normal
 #SBATCH --cpus-per-task=50
 #SBATCH --nodes=1
-#SBATCH --exclude=xcnc[0-49], xcnd[0-10,46-47], xcne[0-7], xcng[0-1]
+#SBATCH --exclude=xcne[0-5],xcng[0-1]
 python Detect_language.py
