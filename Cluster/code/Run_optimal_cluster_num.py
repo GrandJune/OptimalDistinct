@@ -20,12 +20,12 @@ warnings.filterwarnings("ignore", message="Can't initialize NVML")
 # Set TOKENIZERS_PARALLELISM environment variable to false to avoid deadlocks
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-text_file = r"Detail_99_CleanData_0625.csv"
-text_file_list = ["Detail_99_CleanData_0507.csv", "Detail_99_CleanData_0514.csv", "Detail_99_CleanData_0521.csv",
-                  "Detail_99_CleanData_0528.csv", "Detail_99_CleanData_0604.csv", "Detail_99_CleanData_0611.csv",
-                  "Detail_99_CleanData_0618.csv", "Detail_99_CleanData_0625.csv"]
-text_file_list = [each[:-4] + "_with_language.csv" for each in text_file_list]
-text_file_list = [r"./data/" + each for each in text_file_list]
+text_file = r"sbert_similarity_results_allcat.csv"
+# text_file_list = ["Detail_99_CleanData_0507.csv", "Detail_99_CleanData_0514.csv", "Detail_99_CleanData_0521.csv",
+#                   "Detail_99_CleanData_0528.csv", "Detail_99_CleanData_0604.csv", "Detail_99_CleanData_0611.csv",
+#                   "Detail_99_CleanData_0618.csv", "Detail_99_CleanData_0625.csv"]
+# text_file_list = [each[:-4] + "_with_language.csv" for each in text_file_list]
+# text_file_list = [r"./data/" + each for each in text_file_list]
 
 for index, text_file in enumerate(text_file_list):
     df = pd.read_csv(text_file)
