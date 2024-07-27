@@ -45,7 +45,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 #     "A program to create digital art and illustrations.digital art creator",
 #     # Add more documents as needed
 # ]
-corpus = df["Description"].astype(str).tolist()
+corpus = df["Features"].astype(str).tolist()
 # print(corpus)
 
 # Encode corpus into embeddings
@@ -53,7 +53,7 @@ embeddings = model.encode(corpus)
 
 # Determine the optimal number of clusters using the Elbow Method
 inertia = []
-range_clusters = range(10, 50)  # Test from 1 to 10 clusters
+range_clusters = range(10, 100)  # Test from 1 to 10 clusters
 
 for k in range_clusters:
     kmeans = KMeans(n_clusters=k, random_state=42)
