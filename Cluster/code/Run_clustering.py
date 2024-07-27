@@ -19,7 +19,7 @@ warnings.filterwarnings("ignore", message="Can't initialize NVML")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Load and preprocess data
-text_file = r"Detail_99_CleanData_0625_with_language.csv"
+text_file = r"sbert_similarity_results_allcat_with_language.csv"
 # text_file_list = ["Detail_99_CleanData_0507.csv", "Detail_99_CleanData_0514.csv", "Detail_99_CleanData_0521.csv",
 #                   "Detail_99_CleanData_0528.csv", "Detail_99_CleanData_0604.csv", "Detail_99_CleanData_0611.csv",
 #                   "Detail_99_CleanData_0618.csv", "Detail_99_CleanData_0625.csv"]
@@ -46,7 +46,7 @@ kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)
 df['Features_Cluster'] = labels
 # Conversion
-corpus = df["'Conversion Start"].astype(str).tolist()
+corpus = df["'Conversion_start"].astype(str).tolist()
 embeddings = model.encode(corpus)
 kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)

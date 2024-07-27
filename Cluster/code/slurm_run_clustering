@@ -3,8 +3,9 @@
 #SBATCH --job-name=test
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-user=junyili@u.nus.edu
-#SBATCH --mem=200gb
+#SBATCH --mem=300gb
 #SBATCH --partition=normal
 #SBATCH --cpus-per-task=50
 #SBATCH --nodes=1
+#SBATCH --exclude=xcng[0-1],xcne[0-5]
 python Run_clustering.py
