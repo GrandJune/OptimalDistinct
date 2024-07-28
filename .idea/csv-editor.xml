@@ -17,6 +17,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Cluster\code\sbert_similarity_results_allcat.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Cluster\code\sbert_similarity_results_allcat_with_language.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Cluster\data\Detail_99_CleanData_0507.csv">
           <value>
             <Attribute>

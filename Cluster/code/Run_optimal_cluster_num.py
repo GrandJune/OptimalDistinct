@@ -28,13 +28,12 @@ text_file = r"sbert_similarity_results_allcat_with_language.csv"
 # text_file_list = [r"./data/" + each for each in text_file_list]
 
 df = pd.read_csv(text_file)
-df = df[df['Primary_Language'] == 'en']
 # print(df.isna().sum()) # there are many missing value in URL, Website, Linkedin, and so on
 # Load pre-trained BERT model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Description  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-corpus_description = df["Description"].astype(str).tolist()
+corpus_description = df["Description_cleaned"].astype(str).tolist()
 
 embeddings = model.encode(corpus_description)
 
@@ -90,7 +89,7 @@ optimal_clusters = range_clusters[np.argmax(silhouette_scores)]
 print('Silhouette, Optimal number of Description: {0}'.format(optimal_clusters))
 
 # Features  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-corpus_feature = df["Features"].astype(str).tolist()
+corpus_feature = df["Features_cleaned"].astype(str).tolist()
 
 embeddings = model.encode(corpus_feature)
 
@@ -138,7 +137,7 @@ optimal_clusters = range_clusters[np.argmax(silhouette_scores)]
 print('Silhouette, Optimal number of Features: {0}'.format(optimal_clusters))
 
 # Conversion Start !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-corpus_conversion = df["Conversion_start"].astype(str).tolist()
+corpus_conversion = df["Conversion_start_cleaned"].astype(str).tolist()
 
 embeddings = model.encode(corpus_conversion)
 

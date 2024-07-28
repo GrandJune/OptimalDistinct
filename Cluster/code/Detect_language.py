@@ -9,7 +9,7 @@ import pandas as pd
 import re
 
 # Load and preprocess data
-text_file = r"E:/Python_Workplace/OptimalDistinct/Cluster/data/sbert_similarity_results_allcat.csv"
+text_file = r"sbert_similarity_results_allcat.csv"
 # text_file_list = ["Detail_99_CleanData_0507.csv", "Detail_99_CleanData_0514.csv", "Detail_99_CleanData_0521.csv",
 #                   "Detail_99_CleanData_0528.csv", "Detail_99_CleanData_0604.csv", "Detail_99_CleanData_0611.csv",
 #                   "Detail_99_CleanData_0618.csv", "Detail_99_CleanData_0625.csv"]
@@ -40,7 +40,6 @@ for index, row in df.iterrows():
     if pd.notna(row['Description']):
         df.at[index, 'Primary_Language'] = detect_primary_language(row['Description'])
 
+outfile = r"sbert_similarity_results_allcat_with_language.csv"
+df.to_csv(outfile, index=False)
 
-# Display the DataFrame with primary language identified for each sentence
-# print(df[['Description', 'Primary_Language']])
-# print(f"Output saved to {output_file}")
