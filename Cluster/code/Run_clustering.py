@@ -46,7 +46,7 @@ kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)
 df['Features_Cluster'] = labels
 # Conversion
-corpus = df["'Conversion_start"].astype(str).tolist()
+corpus = df["Conversion_start"].astype(str).tolist()
 embeddings = model.encode(corpus)
 kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)
