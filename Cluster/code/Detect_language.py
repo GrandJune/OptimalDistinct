@@ -40,40 +40,6 @@ for index, row in df.iterrows():
     if pd.notna(row['Description']):
         df.at[index, 'Primary_Language'] = detect_primary_language(row['Description'])
 
-def remove_words_case_insensitive(text, words_to_remove):
-    # Convert text to lowercase
-    text_lower = text.lower()
-
-    # Create a regex pattern to match all words in the list, also convert the list to lowercase
-    pattern = '|'.join([re.escape(word.lower()) for word in words_to_remove])
-
-    # Use regex sub to replace the words with an empty string
-    cleaned_text = re.sub(pattern, '', text_lower)
-
-    # Remove extra spaces
-    cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
-
-    return cleaned_text
-
-words_to_remove = ["Conversion Starters", "AI", "GPT", "Prompt", "Starters", "ChatGPT"]
-
-text_list = df["Description"].astype(str).tolist()
-cleaned_text = [remove_words_case_insensitive(text, words_to_remove) for text in text_list]
-df["Description"] = cleaned_text
-
-
-text_list = df["Features"].astype(str).tolist()
-cleaned_text = [remove_words_case_insensitive(text, words_to_remove) for text in text_list]
-df["Features"] = cleaned_text
-
-text_list = df["Conversion_start"].astype(str).tolist()
-cleaned_text = [remove_words_case_insensitive(text, words_to_remove) for text in text_list]
-df["Conversion_start"] = cleaned_text
-
-
-# Save the DataFrame with primary language identified as a new column in the original CSV file
-output_file = "{}_with_language.csv".format(text_file[:-4])
-df.to_csv(output_file, index=False)
 
 # Display the DataFrame with primary language identified for each sentence
 # print(df[['Description', 'Primary_Language']])
