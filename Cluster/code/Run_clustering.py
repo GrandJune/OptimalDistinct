@@ -28,28 +28,27 @@ text_file = r"sbert_similarity_results_allcat_with_language.csv"
 
 # for index, text_file in enumerate(text_file_list_2):
 df = pd.read_csv(text_file)
-df = df[df['Primary_Language'] == 'en']
 # df = df.dropna()
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Description
 optimal_clusters = 48
-corpus = df["Description"].astype(str).tolist()
+corpus = df["Description_cleaned"].astype(str).tolist()
 embeddings = model.encode(corpus)
 kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)
 df['Description_Cluster'] = labels
 # Feature
 optimal_clusters = 20
-corpus = df["Features"].astype(str).tolist()
+corpus = df["Features_cleaned"].astype(str).tolist()
 embeddings = model.encode(corpus)
 kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)
 df['Features_Cluster'] = labels
 # Conversion
 optimal_clusters = 34
-corpus = df["Conversion_start"].astype(str).tolist()
+corpus = df["Conversion_start_cleaned"].astype(str).tolist()
 embeddings = model.encode(corpus)
 kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 labels = kmeans.fit_predict(embeddings)
@@ -57,5 +56,5 @@ df['Conversion_Cluster'] = labels
 
 # Save the clustered data to a new CSV file
 # output_file = r"./data/" + text_file_list[index][:-4] + "_with_cluster.csv"
-output_file = text_file[:-4] + "_with_cluster.csv"
+output_file = "sbert_similarity_results_allcat_with_cluster.csv"
 df.to_csv(output_file, index=False)
