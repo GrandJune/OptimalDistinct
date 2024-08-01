@@ -27,7 +27,7 @@ def calculate_average_distance(df):
 
         # Calculate 90th percentile for the current cluster
         cluster_df = df[df['Description_Cluster'] == focal_cluster]
-        threshold = cluster_df['Conversions'].quantile(0.90)
+        threshold = cluster_df['Conversions'].quantile(0.80)
 
         # Find texts in the same cluster with performance in the top 10%
         superior_texts = cluster_df[cluster_df['Conversions'] > threshold]
@@ -37,6 +37,10 @@ def calculate_average_distance(df):
             superior_embeddings = list(superior_texts['embedding'])
             distances = cosine_distances([focal_embedding], superior_embeddings)[0]
             avg_distance = distances.mean()
+            # The value of cosine distance ranges from 0 to 2:
+            # 0: The vectors are identical (i.e., cosine similarity is 1).
+            # 1: The vectors are orthogonal (i.e., cosine similarity is 0).
+            # 2: The vectors are diametrically opposed (i.e., cosine similarity is -1).
         else:
             avg_distance = None
 

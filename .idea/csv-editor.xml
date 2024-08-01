@@ -3,34 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="E:\GPT\Cluster\data\Detail_99_CleanData_0507_with_cluster.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Cluster\Detail_99_CleanData_0625.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Cluster\code\data_with_avg_distance.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\Cluster\code\sbert_similarity_results_allcat.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\Cluster\code\sbert_similarity_results_allcat_with_cluster.csv">
           <value>
             <Attribute>
